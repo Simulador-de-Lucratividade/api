@@ -7,4 +7,6 @@ export interface ICustomerRepository {
   findByUserId(user_id: string): Promise<Customer[] | undefined>;
   findByEmail(email: string): Promise<Customer | undefined>;
   create(data: ICreateCustomerDTO): Promise<Customer>;
+  update(data: Customer): Promise<Customer>
+  delete(id: string): Promise<void>
 }

@@ -1,18 +1,20 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { GetCustomerByUserIdUseCase } from "./GetCustomerByUserIdUseCase";
+import { EditCustomerUseCase } from "./EditCustomerUseCase";
 
-class GetCustomerByUserIdController {
+class EditCustomerController {
   async handle(request: Request, response: Response): Promise<void> {
-    const user = request.user;
-
-    if (!user) throw new Error("Usuário não encontrado");
+    const { email, name, phone } = request.body;
+    const { id } = request.params
 
     try {
-      const getCustomerByUserIdUseCase = container.resolve(
-        GetCustomerByUserIdUseCase
-      );
-      const customer = await getCustomerByUserIdUseCase.execute(user.id);
+      const editCustomerUseCase = container.resolve(EditCustomerUseCase);
+      const customer = await editCustomerUseCase.execute({
+        id,
+        email,
+        phone,
+        name,
+      });
 
       response.status(200).json({ success: true, customer });
     } catch (error) {
@@ -27,4 +29,4 @@ class GetCustomerByUserIdController {
   }
 }
 
-export default GetCustomerByUserIdController;
+export default EditCustomerController;

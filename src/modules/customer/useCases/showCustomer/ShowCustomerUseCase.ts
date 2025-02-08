@@ -1,17 +1,18 @@
 import { inject, injectable } from "tsyringe";
 import { CustomerRepository } from "../../infra/typeorm/repositories/CustomerRepository";
+import { Customer } from "../../infra/typeorm/entities/Customer";
 
 @injectable()
-export class GetCustomerByUserIdUseCase {
+export class ShowCustomerUseCase {
   constructor(
     @inject(CustomerRepository)
     private readonly customerRepository: CustomerRepository
   ) {}
 
-  async execute(userId: string) {
-    const customer = await this.customerRepository.findByUserId(userId);
+  async execute(customerId: string): Promise<Customer> {
+    const customer = await this.customerRepository.findById(customerId);
 
-    if (!customer || customer.length === 0) {
+    if (!customer) {
       throw new Error("Cliente não encontrado");
     }
 

@@ -37,4 +37,12 @@ export class CustomerRepository implements ICustomerRepository {
     await this.ormRepository.save(customer);
     return customer;
   }
+
+  async update(data: Customer): Promise<Customer> {
+      return this.ormRepository.save(data)
+  }
+
+  async delete(id: string): Promise<void> {
+      await this.ormRepository.delete(id)
+  }
 }
