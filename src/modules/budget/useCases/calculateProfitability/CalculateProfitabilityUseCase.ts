@@ -8,8 +8,9 @@ export class CalculateProfitabilityUseCase {
     items,
     total_value,
     other_costs,
+    services,
   }: IProfitabilityCalculationParams): Promise<number> {
     const calculator = new ProfitabilityCalculator();
-    return calculator.calculate({ items, total_value, other_costs });
+    return calculator.calculate({ items, total_value, other_costs, services });
   }
 }

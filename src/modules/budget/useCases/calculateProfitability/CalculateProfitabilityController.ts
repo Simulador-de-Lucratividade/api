@@ -4,7 +4,7 @@ import { CalculateProfitabilityUseCase } from "./CalculateProfitabilityUseCase";
 
 class CalculateProfitabilityController {
   async handle(request: Request, response: Response): Promise<void> {
-    const { items, total_value, other_costs } = request.body;
+    const { items, total_value, other_costs, services } = request.body;
 
     try {
       const calculateProfitabilityUseCase = container.resolve(
@@ -14,6 +14,7 @@ class CalculateProfitabilityController {
         items,
         total_value,
         other_costs,
+        services,
       });
 
       response.status(200).json({ success: true, profitability });

@@ -5,6 +5,7 @@ export class ProfitabilityCalculator {
     items,
     total_value,
     other_costs,
+    services,
   }: IProfitabilityCalculationParams): number {
     const itemsCost = items.reduce((acc, item) => {
       const discountFactor = item.discount ? 1 - item.discount / 100 : 1;
@@ -24,7 +25,12 @@ export class ProfitabilityCalculator {
           0
         ) || 0;
 
-    const totalCost = itemsCost + fixedCosts + percentageCosts;
+    const serviceCosts = services.reduce(
+      (acc, service) => acc + Number(service.cost),
+      0
+    );
+
+    const totalCost = itemsCost + fixedCosts + percentageCosts + serviceCosts;
 
     if (totalCost === 0) {
       throw new Error("Custo total não pode ser zero");

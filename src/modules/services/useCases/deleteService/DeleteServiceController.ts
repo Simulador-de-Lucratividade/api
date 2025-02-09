@@ -1,14 +1,14 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
-import { DeleteProductUseCase } from "./DeleteProductUseCase";
+import { DeleteServiceUseCase } from "./DeleteServiceUseCase";
 
-class DeleteProductController {
+class DeleteServiceController {
   async handle(request: Request, response: Response): Promise<void> {
     const { id } = request.params;
 
     try {
-      const deleteProductUseCase = container.resolve(DeleteProductUseCase);
-      await deleteProductUseCase.execute(id);
+      const deleteServiceUseCase = container.resolve(DeleteServiceUseCase);
+      await deleteServiceUseCase.execute(id);
 
       response.status(200).json({ success: true });
     } catch (error) {
@@ -23,4 +23,4 @@ class DeleteProductController {
   }
 }
 
-export default DeleteProductController;
+export default DeleteServiceController;
