@@ -1,5 +1,3 @@
-import { UserProfiles } from "../infra/typeorm/entities/UserProfile";
-
 export interface IUserDTO {
   id: string;
   name: string;

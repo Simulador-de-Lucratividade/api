@@ -2,14 +2,14 @@ import "reflect-metadata";
 import express from "express";
 import { AppDataSource } from "./shared/infra/database/data-source";
 import router from "./shared/infra/http/routes/routes";
+import cors from "cors";
 
 import dotenv from "dotenv";
 dotenv.config();
 
-const cors = require("cors");
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
-  optionsSuccessStatus: 200,
+  credentials: true,
 };
 
 const app = express();

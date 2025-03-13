@@ -1,5 +1,4 @@
 import { inject, injectable } from "tsyringe";
-import { UserRepository } from "../../../user/infra/typeorm/repositories/UserRepository";
 import { JwtPayload, sign, SignOptions, verify } from "jsonwebtoken";
 import { UserTokensRepository } from "../../infra/typeorm/repositories/UserTokensRepository";
 import dayjs from "dayjs";

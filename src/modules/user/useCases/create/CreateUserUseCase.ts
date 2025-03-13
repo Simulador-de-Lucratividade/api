@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { UserRepository } from "../../infra/typeorm/repositories/UserRepository";
 import { User } from "../../infra/typeorm/entities/User";
 import { ICreateUserDTO } from "../../dto/ICreateUserDTO";
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 
 @injectable()
 export class CreateUserUseCase {

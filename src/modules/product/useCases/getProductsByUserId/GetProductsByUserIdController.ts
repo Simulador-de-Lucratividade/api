@@ -14,7 +14,7 @@ class GetProductsByUserIdController {
       );
       const product = await getProductsByUserIdUseCase.execute(user.id);
 
-      response.status(200).json({ success: true, product });
+      response.status(200).json({ product });
     } catch (error) {
       if (error instanceof Error) {
         response.status(400).json({ success: false, message: error.message });
