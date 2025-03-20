@@ -8,4 +8,6 @@ export interface ICreateBudgetDTO {
   total_value: number;
   status?: string;
   items: IBudgetItemDTO[];
+  title: string;
+  observations?: string;
 }

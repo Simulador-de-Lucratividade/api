@@ -7,11 +7,15 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
+  Generated,
 } from "typeorm";
 import { Customer } from "../../../../customer/infra/typeorm/entities/Customer";
 import { User } from "../../../../user/infra/typeorm/entities/User";
 import { BudgetItem } from "./BudgetItem";
 
+// TODO - COLOCAR IDENTIFICADOR SEQUENCIAL DOS ORÇAMENTOS (EX: ORÇAMENTO Nº17)
+// TODO - COLOCAR CAMPO DE TÍTULO NO ORÇAMENTO
+// TODO - COLOCAR CAMPO DE OBSERVAÇÕES NO ORÇAMENTO
 @Entity("budgets")
 export class Budget {
   @PrimaryGeneratedColumn("uuid")
@@ -42,6 +46,16 @@ export class Budget {
 
   @Column({ default: "draft" })
   status!: string; // e.g. draft, finalized, sent
+
+  @Column()
+  @Generated("increment")
+  sequence_number!: number;
+
+  @Column()
+  title!: string;
+
+  @Column()
+  observations?: string;
 
   @CreateDateColumn({ type: "timestamp", default: () => "now()" })
   created_at!: Date;

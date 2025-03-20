@@ -11,6 +11,8 @@ class CreateBudgetController {
       total_value,
       status,
       items,
+      title,
+      observations,
     } = request.body;
     const user = request.user;
 
@@ -25,6 +27,8 @@ class CreateBudgetController {
         total_value,
         status,
         items,
+        title,
+        observations,
         user_id: user.id,
       });
 
