@@ -8,8 +8,7 @@ export class ProfitabilityCalculator {
     services,
   }: IProfitabilityCalculationParams): number {
     const itemsCost = items.reduce((acc, item) => {
-      const discountFactor = item.discount ? 1 - item.discount / 100 : 1;
-      return acc + item.unit_price * discountFactor * item.quantity;
+      return acc + (item.unit_price * item.quantity - (item.discount || 0));
     }, 0);
 
     const fixedCosts =

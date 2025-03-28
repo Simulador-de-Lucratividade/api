@@ -19,22 +19,24 @@ export class BudgetRepository implements IBudgetRepository {
 
   async findById(id: string): Promise<Budget | undefined> {
     const budget = await this.ormRepository.findOne({
-        where: { id },
-        relations: ["items", "customer", "user"],
-      });
-    return budget || undefined 
+      where: { id },
+      relations: ["items", "items.product", "customer", "user"],
+    });
+    return budget || undefined;
   }
 
   async findByUserId(user_id: string): Promise<Budget[]> {
     return await this.ormRepository.find({
       where: { user_id },
-      relations: ["items", "customer", "user"],
+      relations: ["items", "items.product", "customer", "user"],
+      order: { sequence_number: "DESC" },
     });
   }
 
   async findAll(): Promise<Budget[]> {
     return await this.ormRepository.find({
-      relations: ["items", "customer", "user"],
+      relations: ["items", "items.product", "customer", "user"],
+      order: { sequence_number: "DESC" },
     });
   }
 
