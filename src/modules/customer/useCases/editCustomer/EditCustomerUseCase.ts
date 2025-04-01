@@ -15,6 +15,11 @@ export class EditCustomerUseCase {
     email,
     name,
     phone,
+    address,
+    city,
+    state,
+    zip_code,
+    country,
   }: IEditCustomerDTO): Promise<Customer> {
     const customer = await this.customerRepository.findById(id);
 
@@ -25,6 +30,11 @@ export class EditCustomerUseCase {
     customer.email = email;
     customer.name = name;
     customer.phone = phone;
+    customer.address = address;
+    customer.city = city;
+    customer.state = state;
+    customer.zip_code = zip_code;
+    customer.country = country;
 
     try {
       const updatedCustomer = await this.customerRepository.update(customer);

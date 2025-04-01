@@ -4,16 +4,22 @@ import { EditCustomerUseCase } from "./EditCustomerUseCase";
 
 class EditCustomerController {
   async handle(request: Request, response: Response): Promise<void> {
-    const { email, name, phone } = request.body;
-    const { id } = request.params
+    const { email, name, phone, address, city, state, zip_code, country } =
+      request.body;
+    const { id } = request.params;
 
     try {
       const editCustomerUseCase = container.resolve(EditCustomerUseCase);
       const customer = await editCustomerUseCase.execute({
         id,
         email,
-        phone,
         name,
+        phone,
+        address,
+        city,
+        state,
+        zip_code,
+        country,
       });
 
       response.status(200).json({ success: true, customer });

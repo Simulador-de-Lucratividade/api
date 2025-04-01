@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { CustomerRepository } from "../../infra/typeorm/repositories/CustomerRepository";
-import { Customer } from "../../infra/typeorm/entities/Customer";
 import { ICreateCustomerDTO } from "../../dto/ICreateCustomerDTO";
+import { Customer } from "../../infra/typeorm/entities/Customer";
+import { CustomerRepository } from "../../infra/typeorm/repositories/CustomerRepository";
 
 @injectable()
 export class CreateCustomerUseCase {
@@ -10,13 +10,33 @@ export class CreateCustomerUseCase {
     private readonly customerRepository: CustomerRepository
   ) {}
 
-  async execute(data: ICreateCustomerDTO): Promise<Customer> {
-    const customer = await this.customerRepository.create(data);
+  async execute({
+    name,
+    email,
+    phone,
+    address,
+    city,
+    state,
+    zip_code,
+    country,
+    user_id,
+  }: ICreateCustomerDTO): Promise<Customer> {
+    try {
+      const customer = await this.customerRepository.create({
+        name,
+        email,
+        phone,
+        address,
+        city,
+        state,
+        zip_code,
+        country,
+        user_id,
+      });
 
-    if (!customer) {
-      throw new Error("Falha ao criar cliente.");
+      return customer;
+    } catch {
+      throw new Error("Erro ao cadastrar cliente");
     }
-
-    return customer;
   }
 }

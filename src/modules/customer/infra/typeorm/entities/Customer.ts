@@ -17,11 +17,26 @@ export class Customer {
   @Column()
   name!: string;
 
-  @Column()
-  email!: string;
+  @Column({ nullable: true })
+  email?: string;
 
   @Column({ nullable: true })
   phone?: string;
+
+  @Column({ nullable: true })
+  address?: string;
+
+  @Column({ nullable: true })
+  city?: string;
+
+  @Column({ nullable: true })
+  state?: string;
+
+  @Column({ nullable: true })
+  zip_code?: string;
+
+  @Column({ nullable: true, default: "Brasil" })
+  country?: string;
 
   @Column()
   user_id!: string;

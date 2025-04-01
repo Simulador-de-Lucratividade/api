@@ -4,7 +4,8 @@ import { CreateCustomerUseCase } from "./CreateCustomerUseCase";
 
 class CreateCustomerController {
   async handle(request: Request, response: Response): Promise<void> {
-    const { name, email, phone } = request.body;
+    const { name, email, phone, address, city, state, zip_code, country } =
+      request.body;
     const user = request.user;
 
     if (!user) throw new Error("Usuário não encontrado");
@@ -15,6 +16,11 @@ class CreateCustomerController {
         name,
         email,
         phone,
+        address,
+        city,
+        state,
+        zip_code,
+        country,
         user_id: user.id,
       });
       response.status(201).json({ success: true, customer });
