@@ -14,7 +14,9 @@ export class CustomerRepository implements ICustomerRepository {
   }
 
   async findAll(): Promise<Customer[]> {
-    return this.ormRepository.find();
+    return this.ormRepository.find({
+      order: { created_at: "DESC" },
+    });
   }
 
   async findByEmail(email: string): Promise<Customer | undefined> {
@@ -23,7 +25,10 @@ export class CustomerRepository implements ICustomerRepository {
   }
 
   async findByUserId(user_id: string): Promise<Customer[] | undefined> {
-    const customer = await this.ormRepository.find({ where: { user_id } });
+    const customer = await this.ormRepository.find({
+      where: { user_id },
+      order: { created_at: "DESC" },
+    });
     return customer || undefined;
   }
 
@@ -39,10 +44,10 @@ export class CustomerRepository implements ICustomerRepository {
   }
 
   async update(data: Customer): Promise<Customer> {
-      return this.ormRepository.save(data)
+    return this.ormRepository.save(data);
   }
 
   async delete(id: string): Promise<void> {
-      await this.ormRepository.delete(id)
+    await this.ormRepository.delete(id);
   }
 }

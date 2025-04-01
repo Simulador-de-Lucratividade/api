@@ -4,6 +4,7 @@ import { ensureAuthenticated } from "../../../../../shared/infra/http/middleware
 import GetServicesByUserIdController from "../../../useCases/getServicesByUserId/GetServicesByUserIdController";
 import ShowServiceController from "../../../useCases/showService/ShowServiceController";
 import DeleteServiceController from "../../../useCases/deleteService/DeleteServiceController";
+import UpdateServiceController from "../../../useCases/updateService/UpdateServiceController";
 
 const serviceRouter = Router();
 
@@ -11,6 +12,7 @@ const createServiceController = new CreateServiceController();
 const getServicesByUserIdController = new GetServicesByUserIdController();
 const showServiceController = new ShowServiceController();
 const deleteServiceController = new DeleteServiceController();
+const updateServiceController = new UpdateServiceController();
 
 serviceRouter.post(
   "/service",
@@ -28,6 +30,12 @@ serviceRouter.get(
   "/service/:id",
   ensureAuthenticated,
   showServiceController.handle
+);
+
+serviceRouter.put(
+  "/service/:id",
+  ensureAuthenticated,
+  updateServiceController.handle
 );
 
 serviceRouter.delete(

@@ -18,7 +18,10 @@ export class ProductRepository implements IProductRepository {
   }
 
   async findByUserId(user_id: string): Promise<Product[] | undefined> {
-    const product = await this.ormRepository.find({ where: { user_id } });
+    const product = await this.ormRepository.find({
+      where: { user_id },
+      order: { created_at: "DESC" },
+    });
     return product || undefined;
   }
 
@@ -29,15 +32,15 @@ export class ProductRepository implements IProductRepository {
 
   async create(data: ICreateProductDTO): Promise<Product> {
     const product = this.ormRepository.create(data);
-    await this.ormRepository.save(product)
+    await this.ormRepository.save(product);
     return product;
   }
 
   async update(data: Product): Promise<Product> {
-      return this.ormRepository.save(data)
+    return this.ormRepository.save(data);
   }
 
   async delete(id: string): Promise<void> {
-      await this.ormRepository.delete(id)
+    await this.ormRepository.delete(id);
   }
 }

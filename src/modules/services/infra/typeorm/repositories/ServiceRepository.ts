@@ -32,7 +32,10 @@ export class ServiceRepository implements IServiceRepository {
   }
 
   async findByUserId(user_id: string): Promise<Service[] | undefined> {
-    const service = await this.ormRepository.find({ where: { user_id } });
+    const service = await this.ormRepository.find({
+      where: { user_id },
+      order: { created_at: "DESC" },
+    });
     return service || undefined;
   }
 
