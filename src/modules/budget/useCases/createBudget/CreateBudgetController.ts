@@ -11,6 +11,7 @@ class CreateBudgetController {
       total_value,
       status,
       items,
+      services,
       title,
       observations,
     } = request.body;
@@ -27,6 +28,7 @@ class CreateBudgetController {
         total_value,
         status,
         items,
+        services,
         title,
         observations,
         user_id: user.id,

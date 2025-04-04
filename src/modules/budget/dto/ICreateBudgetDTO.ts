@@ -1,4 +1,5 @@
 import { IBudgetItemDTO } from "./IBudgetItemDTO";
+import { IBudgetServiceDTO } from "./IBudgetServiceDTO";
 
 export interface ICreateBudgetDTO {
   customer_id: string;
@@ -8,6 +9,7 @@ export interface ICreateBudgetDTO {
   total_value: number;
   status?: string;
   items: IBudgetItemDTO[];
+  services: IBudgetServiceDTO[];
   title: string;
   observations?: string;
 }

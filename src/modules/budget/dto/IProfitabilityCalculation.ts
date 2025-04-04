@@ -1,5 +1,5 @@
-import { Service } from "../../services/infra/typeorm/entities/Service";
 import { IAdditionalCostDTO } from "./IAdditionalCostDTO";
+import { IBudgetServiceDTO } from "./IBudgetServiceDTO";
 
 export interface IProfitabilityCalculationParams {
   items: {
@@ -10,6 +10,6 @@ export interface IProfitabilityCalculationParams {
   }[];
   // valor total da venda
   total_value: number;
-  services: Service[];
+  services: IBudgetServiceDTO[];
   other_costs?: IAdditionalCostDTO[];
 }

@@ -5,18 +5,19 @@ import { Budget } from "../../infra/typeorm/entities/Budget";
 
 @injectable()
 export class CreateBudgetUseCase {
-    constructor(
-        @inject(BudgetRepository)
-        private readonly budgetRepository: BudgetRepository
-    ) {}
+  constructor(
+    @inject(BudgetRepository)
+    private readonly budgetRepository: BudgetRepository
+  ) {}
 
-    async execute(data: ICreateBudgetDTO): Promise<Budget> {
-        const budget = await this.budgetRepository.create(data)
-
-        if(!budget) {
-            throw new Error("Falha ao criar orçamento")
-        }
-
-        return budget
+  async execute(data: ICreateBudgetDTO): Promise<Budget> {
+    console.log(data);
+    const budget = await this.budgetRepository.create(data);
+    console.log("budget", budget);
+    if (!budget) {
+      throw new Error("Falha ao criar orçamento");
     }
+
+    return budget;
+  }
 }

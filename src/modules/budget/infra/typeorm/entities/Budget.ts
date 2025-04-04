@@ -12,10 +12,8 @@ import {
 import { Customer } from "../../../../customer/infra/typeorm/entities/Customer";
 import { User } from "../../../../user/infra/typeorm/entities/User";
 import { BudgetItem } from "./BudgetItem";
+import { BudgetService } from "./BudgetService";
 
-// TODO - COLOCAR IDENTIFICADOR SEQUENCIAL DOS ORÇAMENTOS (EX: ORÇAMENTO Nº17)
-// TODO - COLOCAR CAMPO DE TÍTULO NO ORÇAMENTO
-// TODO - COLOCAR CAMPO DE OBSERVAÇÕES NO ORÇAMENTO
 @Entity("budgets")
 export class Budget {
   @PrimaryGeneratedColumn("uuid")
@@ -68,4 +66,10 @@ export class Budget {
     onDelete: "CASCADE",
   })
   items!: BudgetItem[];
+
+  @OneToMany(() => BudgetService, (budgetService) => budgetService.budget, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
+  services!: BudgetService[];
 }

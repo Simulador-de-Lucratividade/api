@@ -25,7 +25,7 @@ export class ProfitabilityCalculator {
         ) || 0;
 
     const serviceCosts = services.reduce(
-      (acc, service) => acc + Number(service.cost),
+      (acc, service) => acc + Number(service.cost) * Number(service.quantity),
       0
     );
 
