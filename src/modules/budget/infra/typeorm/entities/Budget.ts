@@ -13,6 +13,7 @@ import { Customer } from "../../../../customer/infra/typeorm/entities/Customer";
 import { User } from "../../../../user/infra/typeorm/entities/User";
 import { BudgetItem } from "./BudgetItem";
 import { BudgetService } from "./BudgetService";
+import { BudgetOtherCost } from "./BudgetOtherCosts";
 
 @Entity("budgets")
 export class Budget {
@@ -72,4 +73,14 @@ export class Budget {
     onDelete: "CASCADE",
   })
   services!: BudgetService[];
+
+  @OneToMany(
+    () => BudgetOtherCost,
+    (budgetOtherCost) => budgetOtherCost.budget,
+    {
+      cascade: true,
+      onDelete: "CASCADE",
+    }
+  )
+  other_costs!: BudgetOtherCost[];
 }

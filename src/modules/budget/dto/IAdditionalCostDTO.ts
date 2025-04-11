@@ -1,5 +1,6 @@
 export interface IAdditionalCostDTO {
-    cost_type: "percentage" | "fixed";
-    description: string;
-    amount: number
+  id?: string;
+  cost_type: "percentage" | "fixed";
+  description: string;
+  amount: number;
 }

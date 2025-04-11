@@ -4,8 +4,17 @@ import { EditBudgetUseCase } from "./EditBudgetUseCase";
 
 class EditBudgetController {
   async handle(request: Request, response: Response): Promise<void> {
-    const { issue_date, validity_date, total_value, status, items } =
-      request.body;
+    const {
+      issue_date,
+      validity_date,
+      total_value,
+      status,
+      items,
+      services,
+      other_costs,
+      title,
+      observations,
+    } = request.body;
     const { id } = request.params;
 
     try {
@@ -17,6 +26,10 @@ class EditBudgetController {
         total_value,
         status,
         items,
+        services,
+        other_costs,
+        title,
+        observations,
       });
 
       response.status(200).json({ success: true, budget });

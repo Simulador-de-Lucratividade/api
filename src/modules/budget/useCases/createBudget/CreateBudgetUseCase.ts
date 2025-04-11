@@ -11,9 +11,7 @@ export class CreateBudgetUseCase {
   ) {}
 
   async execute(data: ICreateBudgetDTO): Promise<Budget> {
-    console.log(data);
     const budget = await this.budgetRepository.create(data);
-    console.log("budget", budget);
     if (!budget) {
       throw new Error("Falha ao criar orçamento");
     }

@@ -1,3 +1,4 @@
+import { IAdditionalCostDTO } from "./IAdditionalCostDTO";
 import { IBudgetItemDTO } from "./IBudgetItemDTO";
 import { IBudgetServiceDTO } from "./IBudgetServiceDTO";
 
@@ -10,6 +11,7 @@ export interface ICreateBudgetDTO {
   status?: string;
   items: IBudgetItemDTO[];
   services: IBudgetServiceDTO[];
+  other_costs?: IAdditionalCostDTO[];
   title: string;
   observations?: string;
 }
