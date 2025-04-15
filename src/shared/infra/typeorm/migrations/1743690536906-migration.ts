@@ -3,8 +3,6 @@ import { MigrationInterface, QueryRunner, Table } from "typeorm";
 export class Migration1743690536906 implements MigrationInterface {
   name = "Migration1743690536906";
 
-  // TODO - FAZER A FUNCIONALIDADE DE ADICIONAR SERVIÇOS NO ORÇAMENTO
-
   public async up(queryRunner: QueryRunner): Promise<void> {
     const tableExists = await queryRunner.hasTable("budget_services");
 

@@ -6,10 +6,16 @@ import { CustomerRepository } from "../../modules/customer/infra/typeorm/reposit
 import { ProductRepository } from "../../modules/product/infra/typeorm/repositories/ProductRepository";
 import { BudgetRepository } from "../../modules/budget/infra/typeorm/repositories/BudgetRepository";
 import { ServiceRepository } from "../../modules/services/infra/typeorm/repositories/ServiceRepository";
+import { BudgetServiceRepository } from "../../modules/budget/infra/typeorm/repositories/BudgetServiceRepository";
+import { BudgetItemRepository } from "../../modules/budget/infra/typeorm/repositories/BudgetItemRepository";
+import { BudgetOtherCost } from "../../modules/budget/infra/typeorm/entities/BudgetOtherCosts";
 
 container.registerSingleton<UserRepository>(UserRepository);
 container.registerSingleton<UserTokensRepository>(UserTokensRepository);
 container.registerSingleton<CustomerRepository>(CustomerRepository);
 container.registerSingleton<ProductRepository>(ProductRepository);
 container.registerSingleton<BudgetRepository>(BudgetRepository);
+container.registerSingleton<BudgetServiceRepository>(BudgetServiceRepository);
+container.registerSingleton<BudgetItemRepository>(BudgetItemRepository);
+container.registerSingleton<BudgetOtherCost>(BudgetOtherCost);
 container.registerSingleton<ServiceRepository>(ServiceRepository);
