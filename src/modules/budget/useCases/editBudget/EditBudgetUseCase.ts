@@ -66,15 +66,15 @@ export class EditBudgetUseCase {
 
             if (existingItem) {
               existingItem.product_id =
-                itemData.product_id || existingItem.product_id;
+                itemData.product_id ?? existingItem.product_id;
               existingItem.unit_price =
-                itemData.unit_price || existingItem.unit_price;
+                itemData.unit_price ?? existingItem.unit_price;
               existingItem.quantity =
-                itemData.quantity || existingItem.quantity;
+                itemData.quantity ?? existingItem.quantity;
               existingItem.total_price =
-                itemData.total_price || existingItem.total_price;
+                itemData.total_price ?? existingItem.total_price;
               existingItem.discount =
-                itemData.discount || existingItem.discount;
+                itemData.discount ?? existingItem.discount;
 
               const savedItem = await this.budgetItemRepository.save(
                 existingItem
