@@ -14,6 +14,7 @@ import { User } from "../../../../user/infra/typeorm/entities/User";
 import { BudgetItem } from "./BudgetItem";
 import { BudgetService } from "./BudgetService";
 import { BudgetOtherCost } from "./BudgetOtherCosts";
+import { BudgetStatusEnum } from "../../../dto/BudgetStatusEnum";
 
 @Entity("budgets")
 export class Budget {
@@ -43,8 +44,12 @@ export class Budget {
   @Column("decimal", { precision: 10, scale: 2 })
   total_value!: number;
 
-  @Column({ default: "draft" })
-  status!: string; // e.g. draft, finalized, sent
+  @Column({
+    type: "enum",
+    enum: BudgetStatusEnum,
+    default: BudgetStatusEnum.DRAFT,
+  })
+  status!: BudgetStatusEnum;
 
   @Column()
   @Generated("increment")

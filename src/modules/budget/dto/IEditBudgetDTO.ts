@@ -1,3 +1,4 @@
+import { BudgetStatusEnum } from "./BudgetStatusEnum";
 import { IAdditionalCostDTO } from "./IAdditionalCostDTO";
 import { IBudgetItemDTO } from "./IBudgetItemDTO";
 import { IBudgetServiceDTO } from "./IBudgetServiceDTO";
@@ -7,7 +8,7 @@ export interface IEditBudgetDTO {
   issue_date?: Date;
   validity_date?: Date;
   total_value?: number;
-  status?: string;
+  status?: BudgetStatusEnum;
   items?: IBudgetItemDTO[];
   services?: IBudgetServiceDTO[];
   other_costs?: IAdditionalCostDTO[];
